@@ -1,3 +1,5 @@
+/* Tests for sending and receiving AMP boxes */
+
 var sendreceive = require('../lib/sendreceive');
 
 exports['test_dataReceived_atomicBuffers'] = function(test, assert) {
