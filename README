@@ -16,6 +16,5 @@ The reply from the server (in AMP box form) is printed to the console.
 
 
 TODO:
-- more and better unit tests for boxing to and unboxing from the wire
 - AMP serialization format
 - real sample server and client
