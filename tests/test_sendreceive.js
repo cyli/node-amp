@@ -1,25 +1,47 @@
-var AmpReceiver = require('../lib/sendreceive').AmpReceiver;
+var sendreceive = require('../lib/sendreceive');
 
 exports['test_dataReceived_atomicBuffers'] = function(test, assert) {
-    var ar = new AmpReceiver(),
+    var br = new sendreceive.BoxReceiver(),
         buffers = [
             new Buffer(2), // a length - we'll write to it later
-            new Buffer('key'),
+            new Buffer('key1'),
             new Buffer(2), // a length - we'll write to it later
-            new Buffer('value')
-        ],
-        i;
+            new Buffer('value1'),
+            new Buffer(2), // a length - we'll write to it later
+            new Buffer('key2'),
+            new Buffer(2), // a length - we'll write to it later
+            new Buffer('value2')
+        ];
+    var i;
 
     for (i=0; i<buffers.length; i++) {
-        if (i % 2 === 0) { //0 and 2
+        if (i % 2 === 0) { // 0, 2, 4, and 6
             buffers[i].writeInt16BE(buffers[i + 1].length, 0);
         }
-        ar.dataReceived(buffers[i]);
+        br.dataReceived(buffers[i]);
     }
 
-    assert.length(Object.keys(ar.box), 1, 'There should be 1 key/val pair');
-    assert.isDefined(ar.box['key'], 'Key is "key"');
-    assert.equal(Buffer.isBuffer(ar.box['key']), true,
-        "The value should be a Buffer");
+    assert.length(Object.keys(br.box), 2, 'There should be 2 key/value pairs');
+    for (i=1; i<3; i++) {
+        assert.isDefined(br.box['key' + i], 'Key is "key' + i + '"');
+        assert.equal(Buffer.isBuffer(br.box['key' + i]), true,
+            "The value should be a Buffer");
+    }
+    test.finish();
+};
+
+
+exports['test_writeToReceiver'] = function(test, assert) {
+    var box = {
+            'key1': new Buffer('value1'),
+            'key2': new Buffer('value2')
+        },
+        bs = new sendreceive.BoxSender(box),
+        br = new sendreceive.BoxReceiver(),
+        output = [];
+
+    bs.writeToTransport(function(d) { br.dataReceived(d); });
+
+    assert.eql(br.box, box, "Sent box should be same as received box");
     test.finish();
 };
