@@ -1,1 +1,9 @@
 Node.js implementation of AMP. (http://amp-protocol.net)
+
+Currently just provides functionality to receive an AMP box and send an AMP
+box (an AMP box being defined as a dictionary with utf8 strings as keys and
+Buffers as values).
+
+Sample:
+- "node lib/scrappyreceiver.js" and twisted's doc/core/examples/ampclient.py
+- twisted's doc/core/examples/ampserver.py and "node lib/txExClient.js"
