@@ -1,7 +1,25 @@
 {
+    "author": "Ying Li",
     "name": "node-amp",
+    "description": "Node implementation of the AMP protocol (http://amp-protocol.net/)",
     "version": "0.0.1",
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/cyli/node-amp.git"
+    },
+    "main": "./lib",
     "dependencies": {
-        "buffertool": "1.0.x"
+        "buffertools": ""
+    },
+    "devDependencies": {
+        "whiskey": "",
+        "jshint": ""
+    },
+    "engines": {
+        "node": ">=0.8"
+    },
+    "scripts": {
+        "test": "./bin/test.sh",
+        "lint": "./bin/lint.sh"
     }
 }
