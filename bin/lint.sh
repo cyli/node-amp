@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./node_modules/.bin/jshint lib/*.js tests/*.js
+./node_modules/.bin/jshint lib/*.js tests/*.js examples/*.js
