@@ -3,6 +3,11 @@
     "name": "node-amp",
     "description": "Node implementation of the AMP protocol (http://amp-protocol.net/)",
     "version": "0.0.1",
+    "keywords": [
+        "rpc",
+        "twisted",
+        "amp"
+    ],
     "repository" : {
         "type" : "git",
         "url" : "http://github.com/cyli/node-amp.git"
@@ -15,6 +20,7 @@
     "engines": {
         "node": ">=0.8"
     },
+    "license": "MIT",
     "scripts": {
         "test": "./bin/test.sh",
         "lint": "./bin/lint.sh"
