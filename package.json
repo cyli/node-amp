@@ -8,11 +8,8 @@
         "url" : "http://github.com/cyli/node-amp.git"
     },
     "main": "./lib",
-    "dependencies": {
-        "buffertools": ""
-    },
     "devDependencies": {
-        "whiskey": "",
+        "nodeunit": "",
         "jshint": ""
     },
     "engines": {
